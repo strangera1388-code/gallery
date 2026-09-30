@@ -27,12 +27,15 @@ jobs:
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
-          distribution: temurin
+          distribution: "temurin"
           java-version: "21"
 
       - name: Install Android SDK Platform 37
         run: |
           yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-37"
+
+      - name: Make Gradle executable
+        run: chmod +x ./gradlew
 
       - name: Build
         run: ./gradlew assembleRelease
